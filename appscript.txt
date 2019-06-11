@@ -1,0 +1,36 @@
+var ss = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/1d2D4gs9gAJQeBpIJW9TiV4R0koeKui746yq-icJYGp4/edit#gid=0");
+
+var sheet = ss.getSheetByName('Items'); // be very careful ... it is the sheet name .. so it should match 
+
+
+function doPost(e){
+var action = e.parameter.action;
+
+if(action == 'addItem'){
+  return addItem(e);
+
+}
+
+}
+
+
+
+
+
+function addItem(e){
+
+var date =  new Date();
+
+var id  =  "Item"+sheet.getLastRow(); // Item1
+
+var name = e.parameter.itemName;
+
+var brand = e.parameter.brand;
+
+sheet.appendRow([date,id,itemName,brand]);
+
+   return ContentService.createTextOutput("Success").setMimeType(ContentService.MimeType.TEXT);
+
+
+
+}
